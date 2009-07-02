@@ -6,18 +6,20 @@ Request = class(host, path): /host = host, /path = path.
 Request handle = (routing): routing dispatch(/path, self).
 Request print  = (): (/host, /path) print.
 
-Routing = class(mapping): /mapping = mapping.
-Routing dispatch = (path, request): PotionsController print, PotionsController (request) index() print.
+Routing = class(mapping): mapping at (key='index') print, /mapping = mapping.
+Routing dispatch = (path, request): PotionsController (request) print, PotionsController (request) index() print.
 
-BaseController = class(request): /request = request, /params, /session.
+BaseController = class(request): request print, /request = request.
+#, /params = nil, /session = nil.
 
 BaseModel = class: /connection.
 
 # User Framework
 PotionsController = BaseController class
 PotionsController index = (): 'hello' print, ("Returning rendered HTML for ", /params at (key='host')) join.
+PotionsController print = (): 'PotionsController' print.
 
 
 # Initializing & calling
-routing = Routing ()
+routing = Routing ( (index='/potions/index') )
 Request ('localhost', '/potions/index') handle(routing)
