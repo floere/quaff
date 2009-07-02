@@ -1,1 +1,23 @@
 "Starting Quaff" print
+
+# Framework
+Request = class(host, path): /host = host, /path = path.
+# This sets off the rest.
+Request handle = (routing): routing dispatch(/path, self).
+Request print  = (): (/host, /path) print.
+
+Routing = class(mapping): /mapping = mapping.
+Routing dispatch = (path, request): PotionsController print, PotionsController (request) index() print.
+
+BaseController = class(request): /request = request, /params, /session.
+
+BaseModel = class: /connection.
+
+# User Framework
+PotionsController = BaseController class
+PotionsController index = (): 'hello' print, ("Returning rendered HTML for ", /params at (key='host')) join.
+
+
+# Initializing & calling
+routing = Routing ()
+Request ('localhost', '/potions/index') handle(routing)
